@@ -1,0 +1,53 @@
+{% extends 'utility/main2.html' %}
+{% load static %}
+{% block content %}
+<br>
+
+<html>
+<h1>Class List</h1>
+
+<br>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card card-body">
+			<form method="get">
+		    {{myfilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+            <a class="btn btn-sm btn-danger" href="{% url 'teacher' %}">Clear</a></td>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+
+<div class="row">
+
+	<div class="col-md-6">
+		
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th style="text-align: center">First Name</th>
+					<th style="width: 100px; text-align: center">Last Name</th>
+                    <th style="text-align: center">Academic Standing</th>
+					<th style="text-align: center"></th>
+				</tr>
+				{% for student in students %}
+					<tr>
+						<td style="width: 100px; text-align: center">{{student.user.first_name}}</td>
+                        <td style="width: 100px; text-align: center">{{student.user.last_name}}</td>
+                        <td style="width: 100px; text-align: center">{{student.current_class_standing}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'Student_Detail' student.student_id %}">Detail</a></td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+</div>
+</html>
+
+{% endblock content %}

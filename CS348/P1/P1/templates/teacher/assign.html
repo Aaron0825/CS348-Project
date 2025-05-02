@@ -1,0 +1,61 @@
+{% extends 'utility/main2.html' %}
+{% block content %}
+
+<br>
+<h1>Assignment List</h1>
+
+<br>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card card-body">
+			<form method="get">
+		    {{myfilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+            <a class="btn btn-sm btn-danger" href="{% url 'assignment' %}">Clear</a></td>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card card-body">
+			<a class="btn btn-success  btn-sm btn-block" href="{% url 'HW_Create' %}">Add Assignment</a>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <hr>
+            <div class="card card-body">
+
+                <table class="table table-sm">
+                    <tr>
+                        <th style="width: 200px; text-align: center">Assignment Name</th>
+                        <th style="width: 200px; text-align: center">Due Date</th>
+                        <th style="width: 100px; text-align: center">Weight(%)</th>
+                        <th style="width: 100px; text-align: center">Class Mean</th>
+                        <th></th>
+                    </tr>
+                    {% for hw in homeworks %}
+                        <tr>
+                            <td style="width: 200px; text-align: center">{{hw.name}}</td>
+                            <td style="width: 200px; text-align: center">{{hw.date}}</td>
+                            <td style="width: 100px; text-align: center">{{hw.weight}}</td>
+                            <td style="width: 100px; text-align: center">{{hw.average_score}}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'HW_Detail' hw.pk %}">Detail</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock content %}

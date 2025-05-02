@@ -1,0 +1,18 @@
+{% extends 'utility/main2.html' %}
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+			<p>Are you sure you want to drop {{ order.student.first_name }} {{ order.student.last_name }}’s {{ order.homework.name }}?</p>
+			<form  action="{% url 'Student_HW_Drop' order.pk %}" method="post">
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'Student_Detail' order.student.student_id %}">No</a>
+
+			  	<input class="btn btn-danger" type="submit" value="Yes"/>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'utility/main2.html' %}
+{% block content %}
+<br>
+<h1>{{ hw.name }}</h1>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card card-body">
+            <form method="get">
+            {{hr_filter.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+            <a class="btn btn-sm btn-danger" href="{% url 'HW_Detail' hw.pk %}">Clear</a></td>
+          </form>
+        </div>
+    </div>
+    
+</div>
+
+<br>
+  <div class="row">
+      <div class="col-lg-8">
+          <div class="card card-body">
+              <a class="btn btn-success  btn-sm btn-block" href="{% url 'HW_Add' hw.pk %}">Upload Student Grade</a>
+          </div>
+      </div>
+      
+  </div>
+  <br>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th style="width: 100px; text-align: center">First Name</th>
+                        <th style="width: 100px; text-align: center">Last Name</th>
+                        <th style="width: 100px; text-align: center">Score</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for d in details %}
+                        <tr>
+                            <td style="width: 100px; text-align: center">{{d.student.first_name}}</td>
+                            <td style="width: 100px; text-align: center">{{d.student.last_name}}</td>
+                            <td style="width: 100px; text-align: center">{{d.score}}</td>
+                            <td><a class="btn btn-sm btn-warning" href="{% url 'HW_Modify' d.pk %}">Modify</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'HW_Drop' d.pk %}">Drop</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'utility/main2.html' %}
+{% block content %}
+  <h1>
+    Upload Grade for: <em>{{ hw.name }}</em>
+  </h1>
+
+  <form method="post" class="card card-body">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+      Save
+    </button>
+
+    <!-- Cancel goes back to the same detail page -->
+    <a 
+      href="{% url 'HW_Detail' pk=hw.pk %}" 
+      class="btn btn-secondary"
+    >
+      Cancel
+    </a>
+  </form>
+{% endblock content %}

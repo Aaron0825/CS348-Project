@@ -1,0 +1,61 @@
+{% extends 'utility/main2.html' %}
+{% block content %}
+<br>
+<h1>Test List</h1>
+
+<br>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card card-body">
+			<form method="get">
+		    {{myfilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+            <a class="btn btn-sm btn-danger" href="{% url 'quiz' %}">Clear</a></td>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+
+<br>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card card-body">
+			<a class="btn btn-success  btn-sm btn-block" href="{% url 'Test_Create' %}">Add New Test</a>
+		</div>
+	</div>
+	
+</div>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <hr>
+            <div class="card card-body">
+                
+			<br>
+                <table class="table table-sm">
+                    <tr>
+                        <th style="width: 100px; text-align: center">Test Name</th>
+                        <th style="width: 200px; text-align: center">Test Date</th>
+                        <th style="width: 100px; text-align: center">Weight(%)</th>
+                        <th style="width: 100px; text-align: center">Class Mean</th>
+                        <th></th>
+                    </tr>
+                    {% for t in tests %}
+                        <tr>
+                            <td style="width: 100px; text-align: center">{{t.name}}</td>
+                            <td style="width: 200px; text-align: center">{{t.date}}</td>
+                            <td style="width: 100px; text-align: center">{{t.weight}}</td>
+                            <td style="width: 100px; text-align: center">{{t.average_score}}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'Teacher_Detail' t.pk %}">Detail</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock content %}

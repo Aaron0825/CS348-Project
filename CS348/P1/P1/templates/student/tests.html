@@ -1,0 +1,44 @@
+{% extends 'utility/main.html' %}
+{% block content %}
+<h1>My Tests</h1>
+
+<br>
+<html>
+<form method="get">
+    {{ myfilter.form.above_average.label_tag }}
+    {{ myfilter.form.above_average }}<br/>
+    {{ myfilter.form.start_date.label_tag }} {{ myfilter.form.start_date }} <br/>
+    {{ myfilter.form.end_date.label_tag }} {{ myfilter.form.end_date }} <br/>
+    <button type="submit">Apply Filter</button>
+  </form>
+
+<br>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th style="width: 100px; text-align: center">Test Name</th>
+                        <th style="width: 100px; text-align: center">Test Date</th>
+                        <th style="width: 100px; text-align: center">Score</th>
+                        <th style="width: 100px; text-align: center">Class Mean</th>
+                    </tr>
+                    {% for result in test_results %}
+                        <tr>
+                            <td style="width: 100px; text-align: center">{{result.test.name}}</td>
+                            <td style="width: 100px; text-align: center">{{result.test.date}}</td>
+                            <td style="width: 100px; text-align: center">{{result.score}}</td>
+                            <td style="width: 100px; text-align: center">{{result.test.average_score}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    
+    </div>
+</html>
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends 'utility/main2.html' %}
+{% block content %}
+
+<h1>
+  {{ student.user.first_name }} {{ student.user.last_name }}
+</h1>
+
+<br>
+
+<h2>Tests</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+        
+        <hr>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th style="width: 100px; text-align: center">Test</th>
+                    <th style="width: 100px; text-align: center">Score</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for tr in test_results %}
+                    <tr>
+                        <td style="width: 100px; text-align: center">{{tr.test.name}}</td>
+                        <td style="width: 100px; text-align: center">{{tr.score}}</td>
+                        <td><a class="btn btn-sm btn-warning" href="{% url 'Student_Test_Modify' tr.pk %}">Modify</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'Student_Test_Drop' tr.pk %}">Drop</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+<br>
+
+<h2>Assignments</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+        
+        <hr>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th style="width: 100px; text-align: center">Homework</th>
+                    <th style="width: 100px; text-align: center">Score</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for hw in homework_results %}
+                    <tr>
+                        <td style="width: 100px; text-align: center">{{hw.homework.name}}</td>
+                        <td style="width: 100px; text-align: center">{{hw.score}}</td>
+                        <td><a class="btn btn-sm btn-warning" href="{% url 'Student_HW_Modify' hw.pk %}">Modify</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'Student_HW_Drop' hw.pk %}">Drop</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
